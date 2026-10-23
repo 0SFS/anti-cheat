@@ -9,7 +9,9 @@ Whether a pose, a burst or a launch is inside the envelope, and what a session d
 
 The server watcher is the authority. It runs on every message before a relay. The client watcher is the same checks, off unless the pilot turns `osfs.multiplayer.clientAntiCheat` on. It returns reports. It does not drop a pilot, does not edit a pose, and while it is off it does not store the message or call the checker. The flight loop should skip it entirely in that case. The watcher also returns immediately, so a mistaken call stays a branch.
 
-This package imports `@0sfs/multiplayer` for the message types and the local distance. It does not import a transport.
+The flight page loads this package only as part of the multiplayer fetch.
+It is not on the startup graph. The client watcher stays off after that
+fetch until the pilot turns `osfs.multiplayer.clientAntiCheat` on.
 
 ## Bounds
 
