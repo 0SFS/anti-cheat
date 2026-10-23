@@ -1,0 +1,33 @@
+{
+  "name": "@0sfs/anti-cheat",
+  "version": "0.1.0",
+  "private": true,
+  "description": "0SFS multiplayer envelope: server-side rejection and an opt-in client report of the same checks.",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "exports": {
+    "./bounds": {
+      "source": "./src/bounds.ts",
+      "default": "./src/bounds.ts"
+    },
+    "./clientWatch": {
+      "source": "./src/clientWatch.ts",
+      "default": "./src/clientWatch.ts"
+    },
+    "./review": {
+      "source": "./src/review.ts",
+      "default": "./src/review.ts"
+    },
+    "./serverWatch": {
+      "source": "./src/serverWatch.ts",
+      "default": "./src/serverWatch.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@0sfs/multiplayer": "file:../multiplayer"
+  },
+  "devDependencies": {
+    "vitest": "4.1.6"
+  }
+}
