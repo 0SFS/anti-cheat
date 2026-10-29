@@ -2,7 +2,7 @@
 
 The envelope for a multiplayer session.
 
-The server watcher runs on every pose, burst and launch, and drops a pilot after three failures. The client watcher runs the same checks only while a pilot has turned it on, and only reports. Neither watcher changes the flight model.
+The server watcher runs on every pose, burst and launch, and drops a pilot after three failures. The flight server in `@0sfs/multiplayer-server` calls that watcher before relaying. The client watcher runs the same checks only while a pilot has turned it on, and only reports. Neither watcher changes the flight model.
 
 The implementation spec is [docs/implementation.md](docs/implementation.md). Messages come from `@0sfs/multiplayer`.
 

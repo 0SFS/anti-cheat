@@ -18,6 +18,10 @@
       "source": "./src/review.ts",
       "default": "./src/review.ts"
     },
+    "./relayAdmission": {
+      "source": "./src/relayAdmission.ts",
+      "default": "./src/relayAdmission.ts"
+    },
     "./serverWatch": {
       "source": "./src/serverWatch.ts",
       "default": "./src/serverWatch.ts"

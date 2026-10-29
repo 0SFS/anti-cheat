@@ -7,7 +7,7 @@
 
 import { distanceM } from "@0sfs/multiplayer/geodetic";
 import {
-  groundSpeedMps, muzzleSpeedMps, type AircraftPose, type FireBurst, type MissileLaunch, type MissileState,
+  groundSpeedMps, relativeMuzzleMps, type AircraftPose, type FireBurst, type MissileLaunch, type MissileState,
 } from "@0sfs/multiplayer/protocol";
 import type { GunLimits, MissileLimits, MotionLimits } from "./bounds";
 
@@ -55,7 +55,8 @@ export function reviewBurst(burst: FireBurst, shooter: AircraftPose, gun: GunLim
   if (Math.abs(burst.tMs - shooter.tMs) > 1000) return fail("shot-time", "Burst is more than a second from the shooter pose.");
   if (burst.count > gun.maxBurst) return fail("burst", `${burst.count} rounds in one burst.`);
   if (burst.rateHz > gun.maxRateHz) return fail("rate", `${burst.rateHz} rounds per second.`);
-  const muzzle = muzzleSpeedMps(burst);
+  // The bound is the velocity relative to the gun. The aircraft's ground speed is already in the burst.
+  const muzzle = relativeMuzzleMps(burst, shooter);
   if (muzzle > gun.maxMuzzleMps) return fail("muzzle", `Muzzle ${muzzle.toFixed(0)} m/s.`);
   const slack = gun.muzzleRadiusM + groundSpeedMps(shooter) * Math.abs(burst.tMs - shooter.tMs) / 1000;
   const away = distanceM(shooter, burst);

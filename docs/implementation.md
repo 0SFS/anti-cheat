@@ -1,7 +1,7 @@
 # Anti-cheat implementation
 
-Status: **library landed, relay not built**
-Date: 2026-10-22
+Status: **library landed; the flight server calls the watcher before relay**
+Date: 2026-10-27
 
 ## What this repository owns
 
@@ -50,7 +50,7 @@ The first pose that passes `reviewPoseClaim` is the baseline. A later pose is co
 
 A burst or launch with no accepted pose is `missing-shooter` and counts as a failure.
 
-The WebTransport process, when it exists, calls this watcher and relays only an accepted message.
+`createRelayAdmission` wraps this watcher for one flight. The process in `@0sfs/multiplayer-server` calls it on every pose, burst and launch and relays only an accepted message.
 
 ## Client watcher
 
